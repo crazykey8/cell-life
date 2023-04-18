@@ -3,8 +3,6 @@ import styles from './telephone.module.scss'
 
 function Telephone({children}: { children: React.ReactNode }) {
 
-    console.log(styles)
-
     return (
         <div className={styles.smart}>
             <div className={styles.smart__dettaglio}>

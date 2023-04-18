@@ -1,0 +1,32 @@
+
+.header {
+  &__list {
+    padding: 5px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.3);
+
+    &__item {
+      svg {
+        margin-right: 3px;
+      }
+
+      font-weight: 500;
+      font-size: 14px;
+      line-height: 16px;
+      color: #fff;
+    }
+  }
+
+  &__header {
+    text-align: center;
+    padding-top: 16px;
+    padding-bottom: 22px;
+    font-weight: 500;
+    font-size: 20px;
+    line-height: 28px;
+    letter-spacing: 0.0015em;
+    color: #fff;
+  }
+}
