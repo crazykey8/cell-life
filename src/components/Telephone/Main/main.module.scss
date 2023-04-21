@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: space-between;
 
+
   &__list {
     display: flex;
     flex-direction: column;
@@ -59,4 +60,6 @@
       cursor: pointer;
     }
   }
+
 }
+

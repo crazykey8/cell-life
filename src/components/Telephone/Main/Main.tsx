@@ -1,8 +1,9 @@
 import React, {useEffect} from 'react';
 import styles from './main.module.scss'
-import CellCard from "@/components/Telephone/Main/CellCard/CellCard";
 import {useAppDispatch, useAppSelector} from "@/store/store";
 import {pushLife, removeLife} from "@/store/slice/dataReducer";
+import {CSSTransition, TransitionGroup} from 'react-transition-group'
+import CellCard from "@/components/Telephone/Main/CellCard/CellCard";
 
 function Main() {
     const cells = useAppSelector(state => state.data.stats)
@@ -12,24 +13,40 @@ function Main() {
     function handlePush() {
         if (cells.length === 5) {
             dispatch(removeLife())
+        } else {
             dispatch(pushLife())
-            return
         }
-        dispatch(pushLife())
     }
 
     useEffect(() => {
-        dispatch(removeLife())
+        const interval = setInterval(() => {
+            dispatch(removeLife())
+        }, 5000)
+        return () => {
+            clearInterval(interval)
+        }
     }, [])
 
     return (
         <main className={styles.main}>
-            <ul className={styles.main__list}>
+            <TransitionGroup
+                component='ul'
+                className={styles.main__list}
+            >
                 {cells.map((i) =>
-                    <CellCard key={Math.round(Math.random() * 100000)} image={i.image} header={i.header}
-                              description={i.description}/>
+                    <CSSTransition
+                        timeout={500}
+                        classNames="fade"
+                        key={Math.round(Math.random() * 100000)}
+                        unmountOnExit
+                        mountOnEnter
+                    >
+                        <CellCard key={Math.round(Math.random() * 100000)} image={i.image} header={i.header}
+                                  description={i.description}
+                        />
+                    </CSSTransition>
                 )}
-            </ul>
+            </TransitionGroup>
             <div className={styles.main__button_content}>
                 <button onClick={handlePush} className={styles.main__button_content__button}>
                     Сотворить

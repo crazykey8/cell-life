@@ -3,11 +3,13 @@ import {createSlice} from "@reduxjs/toolkit";
 import life from '../../icons/life.png'
 import dead from '../../icons/dead.png'
 import live from '../../icons/live.png'
+import React, {createRef} from "react";
 
 export interface ICellCard {
     image: StaticImageData,
     header: string,
-    description: string
+    description: string,
+    // nodeRef?: any
 }
 
 type cellCardState = {
@@ -18,18 +20,21 @@ const lifeCard: ICellCard = {
     image: life,
     header: 'Жизнь',
     description: 'Ку-ку',
+    // nodeRef: createRef()
 }
 
 const liveCard: ICellCard = {
     image: live,
     header: 'Живая',
     description: 'И шевелится',
+    // nodeRef: createRef()
 }
 
 const deadCard: ICellCard = {
     image: dead,
     header: 'Мёртвая',
     description: 'Или прикидывается',
+    // nodeRef: createRef()
 }
 
 const initialState: cellCardState = {
@@ -59,7 +64,7 @@ export const dataSlice = createSlice({
             }
         },
         removeLife(state) {
-            state.stats.shift()
+            state.stats.pop()
         }
     }
 })
